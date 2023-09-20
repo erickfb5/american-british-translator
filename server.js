@@ -3,7 +3,26 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
+const runner = require("./tests/test-runner.js");
+const { loggerMiddleware, notFoundMiddleware } = require("./middlewares/");
+const { rootRoutes, testingRoutes, translateRoutes} = require("./routes");
+
 const app = express();
+
+app.use(loggerMiddleware);
+
+app.use("/public", express.static(process.cwd() + "/public"));
+app.use(cors({ origin: "*" })); 
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(rootRoutes)
+app.use(translateRoutes)
+
+testingRoutes(app)
+
+app.use(notFoundMiddleware);
 
 const PORT = process.env.PORT || 5000;
   const listener = app.listen(PORT, () => {
