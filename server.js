@@ -5,13 +5,13 @@ const cors = require("cors");
 
 const runner = require("./tests/test-runner.js");
 const { loggerMiddleware, notFoundMiddleware } = require("./middlewares/");
-const { rootRoutes, testingRoutes, translateRoutes} = require("./routes");
+const { publicRoutes, rootRoutes, testingRoutes, translateRoutes} = require("./routes");
 
 const app = express();
 
 app.use(loggerMiddleware);
 
-app.use("/public", express.static(process.cwd() + "/public"));
+app.use("/public", publicRoutes);
 app.use(cors({ origin: "*" })); 
 
 app.use(bodyParser.json());
