@@ -91,4 +91,4 @@ const {
     return res.json({ text, translation });
   };
   
-  module.exports = { translateText };
+  module.exports = { translateText, americanToBritish, britishToAmerican };
