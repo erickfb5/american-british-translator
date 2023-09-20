@@ -166,8 +166,6 @@ suite("Unit Tests", () => {
     });
   });
 
-  // this tests has no value just to pass fcc tests
-  //i alreay test if translator return the correct answer &Highlight changes.
   suite("Highlight translation", () => {
     test("Highlight translation in Mangoes are my favorite fruit.", (done) => {
       assert.equal(
